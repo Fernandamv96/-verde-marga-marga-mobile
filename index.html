@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Proyecto Verde Marga Marga - Mockup App Móvil">
+  <title>Verde Marga Marga - Mockup Móvil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-green': '#00C896',
+            'eco-blue': '#00A8E8',
+            'eco-gold': '#FFD700',
+            'eco-dark': '#0F172A',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { font-family: 'Inter', system-ui, sans-serif; }
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .phone-frame {
+      width: 390px;
+      height: 844px;
+      background: #1a1a1a;
+      border-radius: 54px;
+      padding: 12px;
+      box-shadow:
+        0 0 0 3px #2d2d2d,
+        0 0 0 6px #1a1a1a,
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 2px #3d3d3d;
+      position: relative;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #00C896 0%, #00A8E8 100%);
+      border-radius: 44px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 126px;
+      height: 34px;
+      background: #1a1a1a;
+      border-radius: 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .notch-speaker {
+      width: 60px;
+      height: 6px;
+      background: #2d2d2d;
+      border-radius: 3px;
+    }
+
+    .notch-camera {
+      width: 12px;
+      height: 12px;
+      background: #1a1a2e;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 2px #2d2d2d;
+    }
+
+    .phone-home-indicator {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 134px;
+      height: 5px;
+      background: white;
+      border-radius: 3px;
+      opacity: 0.8;
+    }
+
+    .phone-button-left {
+      position: absolute;
+      left: -3px;
+      top: 120px;
+      width: 3px;
+      height: 40px;
+      background: #2d2d2d;
+      border-radius-left: 2px;
+    }
+
+    .phone-button-right-1 {
+      position: absolute;
+      right: -3px;
+      top: 150px;
+      width: 3px;
+      height: 80px;
+      background: #2d2d2d;
+    }
+
+    .phone-button-right-2 {
+      position: absolute;
+      right: -3px;
+      top: 240px;
+      width: 3px;
+      height: 60px;
+      background: #2d2d2d;
+    }
+
+    .app-content {
+      height: 100%;
+      padding-top: 56px;
+      padding-bottom: 85px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .app-content::-webkit-scrollbar { display: none; }
+
+    .bottom-nav {
+      position: absolute;
+      bottom: 20px;
+      left: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 12px;
+      border-radius: 20px;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+    }
+
+    .nav-item.active {
+      background: linear-gradient(135deg, #00C896, #00A8E8);
+      color: white;
+    }
+
+    .nav-item:not(.active) {
+      color: #6b7280;
+    }
+
+    .nav-item span {
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    .status-bar {
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      right: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      z-index: 50;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .gradient-card {
+      background: linear-gradient(135deg, #00C896, #00A8E8);
+      border-radius: 24px;
+      padding: 24px;
+      color: white;
+      box-shadow:
+        0 10px 40px rgba(0, 200, 150, 0.3),
+        inset 0 -4px 12px rgba(0, 100, 75, 0.2),
+        inset 0 4px 12px rgba(255, 255, 255, 0.2);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Page transitions */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .cursor-pointer { cursor: pointer; }
+    .active\\:scale-95:active { transform: scale(0.95); }
+    .transition-transform { transition: transform 0.15s ease; }
+  </style>
+</head>
+<body>
+
+<div class="phone-frame">
+  <div class="phone-screen">
+    <div class="phone-notch">
+      <div class="notch-camera"></div>
+      <div class="notch-speaker"></div>
+    </div>
+
+    <div class="status-bar">
+      <span>9:41</span>
+      <div class="flex items-center gap-1">
+        <span>📶</span>
+        <span>🔋</span>
+      </div>
+    </div>
+
+    <div class="app-content" id="app-content">
+      <!-- Pages will be injected here -->
+    </div>
+
+    <nav class="bottom-nav" id="bottom-nav">
+      <button class="nav-item active" data-page="home">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        <span>Inicio</span>
+      </button>
+      <button class="nav-item" data-page="recycling">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/><path d="m14 16-3 3 3 3"/><path d="M8.293 13.596 7.196 9.5 3.1 10.598"/><path d="m9.344 5.81 3 3 3-3"/><path d="M12 3v6"/></svg>
+        <span>Reciclar</span>
+      </button>
+      <button class="nav-item" data-page="marketplace">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,12 20,22 4,22 4,12"/><rect width="20" height="5" x="2" y="7"/><line x1="12" x2="12" y1="22" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        <span>Premios</span>
+      </button>
+      <button class="nav-item" data-page="map">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,6 9,3 15,6 21,3 21,18 15,21 9,18 3,21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>
+        <span>Mapa</span>
+      </button>
+      <button class="nav-item" data-page="profile">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Perfil</span>
+      </button>
+    </nav>
+
+    <div class="phone-home-indicator"></div>
+    <div class="phone-button-left"></div>
+    <div class="phone-button-right-1"></div>
+    <div class="phone-button-right-2"></div>
+  </div>
+</div>
+
+<script>
+// Mock Data
+const mockUser = {
+  name: 'María González',
+  avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face',
+  email: 'maria@email.cl',
+  level: 12, xp: 3450, xpToNextLevel: 4000, pointsBalance: 1420000,
+  totalRecycled: 156.5, co2Saved: 423, treesEquivalent: 18,
+  streak: 14, achievements: 24, rank: 3, district: 'Marga Marga'
+};
+
+const formatCLP = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+const mockBenefits = [
+  { id: 1, title: 'Café gratis grande', company: 'Café Marga', pointsCost: 7500, category: 'Alimentación', image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300&h=200&fit=crop' },
+  { id: 2, title: '30% descuento sushi', company: 'Sushi House', pointsCost: 15000, category: 'Alimentación', image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=300&h=200&fit=crop' },
+  { id: 3, title: 'Boleto cine 2D', company: 'Cine Marga', pointsCost: 25000, category: 'Entretención', image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=300&h=200&fit=crop' },
+  { id: 4, title: 'Paseo en barco', company: 'Tour Marga', pointsCost: 40000, category: 'Experiencias', image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&h=200&fit=crop' },
+];
+
+const mockRecyclingPoints = [
+  { id: 1, name: 'Punto Verde Reñaca', type: 'general', status: 'available', fillLevel: 45 },
+  { id: 2, name: 'EcoPunto Centro', type: 'electronic', status: 'available', fillLevel: 72 },
+  { id: 3, name: 'Contenedor Juana Ross', type: 'glass', status: 'full', fillLevel: 95 },
+  { id: 4, name: 'Punto Verde Jardín', type: 'general', status: 'available', fillLevel: 30 },
+];
+
+const mockAchievements = [
+  { id: 1, title: 'Primer Paso Verde', icon: '🌱', unlocked: true },
+  { id: 2, title: 'Reciclador Serial', icon: '♻️', unlocked: true },
+  { id: 3, title: 'Guerrero del Planeta', icon: '🌍', unlocked: true },
+  { id: 4, title: 'Maestro del Compost', icon: '🍃', unlocked: false, progress: 60 },
+];
+
+const recyclingTypes = [
+  { id: 'glass', label: 'Vidrio', icon: '🍷', points: '$7.500/kg', color: 'from-teal-400 to-cyan-500' },
+  { id: 'paper', label: 'Papel', icon: '📄', points: '$6.000/kg', color: 'from-blue-400 to-indigo-500' },
+  { id: 'plastic', label: 'Plástico', icon: '🥤', points: '$5.000/kg', color: 'from-amber-400 to-orange-500' },
+  { id: 'metal', label: 'Metal', icon: '🥫', points: '$9.000/kg', color: 'from-slate-400 to-gray-600' },
+  { id: 'electronic', label: 'Electrónico', icon: '📱', points: '$12.500/kg', color: 'from-purple-400 to-violet-500' },
+  { id: 'organic', label: 'Orgánico', icon: '🍃', points: '$4.000/kg', color: 'from-lime-400 to-emerald-500' },
+];
+
+// SVG Icons
+const icons = {
+  Leaf: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75"/></svg>',
+  Lightbulb: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>',
+  MapPin: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
+  ChevronRight: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>',
+  Check: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,12 4,12"/></svg>',
+  Trophy: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>',
+  Award: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>',
+  Bell: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>',
+  QrCode: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>',
+  X: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>',
+  User: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+  Settings: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+};
+
+// Page Components
+function HomePage() {
+  return `
+    <div class="px-5 pb-4">
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <p class="text-white/70 text-sm">Buenos días 👋</p>
+          <h1 class="text-white text-xl font-bold">${mockUser.name}</h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <button class="w-11 h-11 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center">
+            ${icons.Bell}
+          </button>
+          <img src="${mockUser.avatar}" alt="Avatar" class="w-11 h-11 rounded-2xl object-cover border-2 border-white/30">
+        </div>
+      </div>
+
+      <!-- Balance Card -->
+      <div class="gradient-card mb-5 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white"></div>
+        </div>
+        <div class="relative z-10">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-white/80 text-sm">Tus Eco-Points</span>
+            <div class="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full">
+              <span class="text-xs">Nivel</span>
+              <span class="font-bold">${mockUser.level}</span>
+            </div>
+          </div>
+          <div class="text-4xl font-bold mb-3">
+            $ ${formatCLP(mockUser.pointsBalance)}
+            <span class="text-lg ml-1 opacity-80">EP</span>
+          </div>
+          <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+            <div class="h-full bg-eco-gold rounded-full" style="width: 86%"></div>
+          </div>
+        </div>
+        <!-- Floating Badge -->
+        <div class="absolute -top-2 -right-2 bg-eco-gold text-white px-3 py-1 rounded-2xl text-sm font-bold shadow-lg animate-float">
+          🔥 ${mockUser.streak} días
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-3 gap-3 mb-5">
+        <div class="glass-card text-center py-3">
+          <div class="text-xl mb-1">🏆</div>
+          <div class="font-bold text-eco-dark">${mockUser.achievements}</div>
+          <div class="text-xs text-gray-500">Logros</div>
+        </div>
+        <div class="glass-card text-center py-3">
+          <div class="text-xl mb-1">📊</div>
+          <div class="font-bold text-eco-dark">#${mockUser.rank}</div>
+          <div class="text-xs text-gray-500">Ranking</div>
+        </div>
+        <div class="glass-card text-center py-3">
+          <div class="text-xl mb-1">🌿</div>
+          <div class="font-bold text-eco-dark">${mockUser.totalRecycled}kg</div>
+          <div class="text-xs text-gray-500">Reciclado</div>
+        </div>
+      </div>
+
+      <!-- Impact Stats -->
+      <div class="glass-card mb-5">
+        <h2 class="font-semibold text-eco-dark mb-4 flex items-center gap-2">
+          <span class="w-8 h-8 rounded-xl bg-eco-green/20 flex items-center justify-center text-eco-green">
+            ${icons.Leaf}
+          </span>
+          Tu Impacto
+        </h2>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="text-center p-3 bg-eco-green/5 rounded-2xl">
+            <div class="text-2xl mb-1">♻️</div>
+            <div class="text-xl font-bold text-eco-dark">156.5</div>
+            <div class="text-xs text-gray-500">Kg Reciclados</div>
+          </div>
+          <div class="text-center p-3 bg-eco-blue/5 rounded-2xl">
+            <div class="text-2xl mb-1">🌿</div>
+            <div class="text-xl font-bold text-eco-dark">423</div>
+            <div class="text-xs text-gray-500">CO₂ Ahorrado</div>
+          </div>
+          <div class="text-center p-3 bg-green-500/5 rounded-2xl">
+            <div class="text-2xl mb-1">🌳</div>
+            <div class="text-xl font-bold text-eco-dark">${mockUser.treesEquivalent}</div>
+            <div class="text-xs text-gray-500">Árboles</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Recommendations -->
+      <div class="glass-card">
+        <h3 class="font-semibold text-eco-dark mb-4 flex items-center gap-2">
+          <span class="w-8 h-8 rounded-xl bg-eco-gold/20 flex items-center justify-center text-eco-gold">
+            ${icons.Lightbulb}
+          </span>
+          Recomendaciones IA
+        </h3>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-2xl">
+            <div class="w-10 h-10 rounded-xl bg-eco-green/20 flex items-center justify-center text-eco-green">
+              ${icons.MapPin}
+            </div>
+            <div class="flex-1">
+              <h4 class="font-medium text-sm text-eco-dark">Contenedor cercano</h4>
+              <p class="text-xs text-gray-500 mb-1">Vidrio a 200m disponible</p>
+              <button class="text-xs text-eco-green font-semibold flex items-center gap-1">
+                Ver en mapa ${icons.ChevronRight}
+              </button>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-2xl">
+            <div class="w-10 h-10 rounded-xl bg-eco-gold/20 flex items-center justify-center text-eco-gold">
+              ${icons.Lightbulb}
+            </div>
+            <div class="flex-1">
+              <h4 class="font-medium text-sm text-eco-dark">Optimiza tu ruta</h4>
+              <p class="text-xs text-gray-500 mb-1">Paper y vidrio hoy = bonus max</p>
+              <button class="text-xs text-eco-green font-semibold flex items-center gap-1">
+                Ver ruta ${icons.ChevronRight}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function RecyclingPage() {
+  const typesHTML = recyclingTypes.map(type => `
+    <div class="glass-card text-center py-4 cursor-pointer active:scale-95 transition-transform">
+      <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-gradient-to-br ${type.color} flex items-center justify-center text-2xl shadow-lg">
+        ${type.icon}
+      </div>
+      <h3 class="font-semibold text-eco-dark text-sm">${type.label}</h3>
+      <span class="text-eco-gold font-bold text-sm">${type.points}</span>
+    </div>
+  `).join('');
+
+  return `
+    <div class="px-5 pb-4">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-white text-2xl font-bold">Reciclar</h1>
+          <p class="text-white/70 text-sm">Escanea y gana puntos</p>
+        </div>
+        <div class="bg-eco-gold/20 px-3 py-1 rounded-full">
+          <span class="text-sm font-bold text-eco-gold">+25% bonus</span>
+        </div>
+      </div>
+
+      <!-- Scan Button -->
+      <button onclick="showScanModal()" class="w-full gradient-card p-5 mb-5 flex items-center gap-4 active:scale-95 transition-transform cursor-pointer">
+        <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center">
+          ${icons.QrCode}
+        </div>
+        <div class="text-left">
+          <h3 class="font-bold text-lg">Escanear QR</h3>
+          <p class="text-white/80 text-sm">Detecta automáticamente</p>
+        </div>
+      </button>
+
+      <!-- Types Grid -->
+      <h2 class="text-white font-semibold mb-3">Tipos de Reciclaje</h2>
+      <div class="grid grid-cols-2 gap-3">
+        ${typesHTML}
+      </div>
+    </div>
+  `;
+}
+
+function MarketplacePage() {
+  const benefitsHTML = mockBenefits.map(benefit => `
+    <div class="glass-card p-0 overflow-hidden cursor-pointer active:scale-95 transition-transform">
+      <div class="relative h-28">
+        <img src="${benefit.image}" alt="${benefit.title}" class="w-full h-full object-cover">
+        <span class="absolute top-2 left-2 bg-white/90 backdrop-blur px-2 py-0.5 rounded-full text-xs font-medium">
+          ${benefit.category}
+        </span>
+      </div>
+      <div class="p-3">
+        <h3 class="font-semibold text-eco-dark text-xs mb-1 line-clamp-1">${benefit.title}</h3>
+        <p class="text-xs text-gray-500 mb-2">${benefit.company}</p>
+        <div class="flex items-center justify-between">
+          <span class="text-eco-gold font-bold text-sm">$ ${formatCLP(benefit.pointsCost)}</span>
+          <button onclick="showSuccessModal(${benefit.pointsCost})" class="gradient-card text-white px-3 py-1 rounded-xl text-xs font-semibold">
+            Canjear
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  return `
+    <div class="px-5 pb-4">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h1 class="text-white text-2xl font-bold">Marketplace</h1>
+          <p class="text-white/70 text-sm">Canjear Eco-Points</p>
+        </div>
+        <div class="gradient-card px-4 py-2 text-sm flex items-center gap-2">
+          <span class="font-bold">$ ${formatCLP(mockUser.pointsBalance)}</span>
+          <span class="opacity-80">EP</span>
+        </div>
+      </div>
+
+      <h2 class="text-white font-semibold mb-3 flex items-center gap-2">
+        <span>⭐</span> Destacados
+      </h2>
+
+      <div class="grid grid-cols-2 gap-3">
+        ${benefitsHTML}
+      </div>
+    </div>
+  `;
+}
+
+function MapPage() {
+  const statusConfig = {
+    available: { color: '#10B981', label: 'Disponible' },
+    near_full: { color: '#F59E0B', label: 'Casi lleno' },
+    full: { color: '#EF4444', label: 'Lleno' }
+  };
+
+  const positions = [
+    { left: '15%', top: '25%' },
+    { left: '75%', top: '20%' },
+    { left: '20%', top: '70%' },
+    { left: '70%', top: '75%' }
+  ];
+
+  const pointsHTML = mockRecyclingPoints.map((point, i) => {
+    const status = statusConfig[point.status];
+    return `
+      <div class="absolute w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg border-2 border-white cursor-pointer hover:scale-110 transition-transform" style="left: ${positions[i].left}; top: ${positions[i].top}; background-color: ${status.color}">
+        <span class="text-lg">♻️</span>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="relative h-full">
+      <!-- Map Area -->
+      <div class="h-[50%] relative bg-gradient-to-br from-cyan-100 via-teal-50 to-emerald-100">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="text-center opacity-30">
+            <span class="text-eco-green" style="font-size: 48px; display: block; margin-bottom: 8px;">📍</span>
+            <p class="text-sm text-gray-600">Mapa de Viña del Mar</p>
+          </div>
+        </div>
+        <!-- Center Location -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div class="relative">
+            <div class="absolute -inset-8 bg-eco-blue/20 rounded-full" style="animation: pulse 2s ease-in-out infinite;"></div>
+            <div class="w-5 h-5 bg-eco-blue rounded-full border-4 border-white shadow-lg"></div>
+          </div>
+        </div>
+        <!-- Points -->
+        ${pointsHTML}
+      </div>
+
+      <!-- Bottom Info -->
+      <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-[32px] p-5 shadow-2xl">
+        <div class="w-12 h-1 bg-gray-200 rounded-full mx-auto mb-4"></div>
+        <div class="flex gap-2 overflow-x-auto pb-4 no-scrollbar">
+          <button class="px-4 py-2 rounded-full text-sm font-medium gradient-card text-white">General</button>
+          <button class="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-600">Vidrio</button>
+          <button class="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-600">Papel</button>
+          <button class="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-600">Electrónico</button>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="text-center p-3 bg-eco-green/10 rounded-2xl">
+            <p class="text-2xl font-bold text-eco-dark">${mockRecyclingPoints.length}</p>
+            <p class="text-xs text-gray-500">Puntos totales</p>
+          </div>
+          <div class="text-center p-3 bg-eco-blue/10 rounded-2xl">
+            <p class="text-2xl font-bold text-eco-blue">${mockRecyclingPoints.filter(p => p.status === 'available').length}</p>
+            <p class="text-xs text-gray-500">Disponibles</p>
+          </div>
+          <div class="text-center p-3 bg-eco-gold/10 rounded-2xl">
+            <p class="text-2xl font-bold text-eco-gold">4</p>
+            <p class="text-xs text-gray-500">IoT activos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function ProfilePage() {
+  const achievementsHTML = mockAchievements.map(achievement => `
+    <div class="glass-card relative p-4 ${!achievement.unlocked ? 'opacity-70' : ''}">
+      ${achievement.unlocked ? '<div class="absolute top-2 right-2 w-2 h-2 bg-eco-gold rounded-full"></div>' : ''}
+      <div class="text-3xl mb-2">${achievement.icon}</div>
+      <h3 class="font-medium text-sm ${achievement.unlocked ? 'text-eco-dark' : 'text-gray-500'}">${achievement.title}</h3>
+      ${achievement.unlocked ? `<div class="flex items-center gap-1 text-xs text-eco-gold mt-1">${icons.Check}<span>Desbloqueado</span></div>` : ''}
+      ${!achievement.unlocked && achievement.progress ? `
+        <div class="mt-2"><div class="h-1.5 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-eco-blue rounded-full" style="width: ${achievement.progress}%"></div></div></div>
+      ` : ''}
+    </div>
+  `).join('');
+
+  return `
+    <div class="px-5 pb-4" style="margin-top: -24px;">
+      <!-- Header -->
+      <div class="gradient-card p-5 text-white mb-5 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-white"></div>
+        </div>
+        <div class="relative flex items-center gap-4 mb-4">
+          <div class="relative">
+            <img src="${mockUser.avatar}" alt="${mockUser.name}" class="w-20 h-20 rounded-3xl object-cover border-4 border-white/30">
+            <div class="absolute -bottom-1 -right-1 w-8 h-8 bg-eco-gold rounded-xl flex items-center justify-center text-lg border-2 border-white">🌿</div>
+          </div>
+          <div>
+            <h1 class="font-bold text-xl">${mockUser.name}</h1>
+            <p class="text-white/70 text-sm">${mockUser.email}</p>
+            <div class="flex gap-2 mt-2">
+              <span class="px-2 py-0.5 bg-white/20 rounded-full text-xs">Arbusto</span>
+              <span class="px-2 py-0.5 bg-eco-gold/30 rounded-full text-xs text-eco-gold">Nivel ${mockUser.level}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white/20 backdrop-blur rounded-2xl p-3">
+          <div class="flex justify-between text-sm mb-1">
+            <span>Progreso al nivel ${mockUser.level + 1}</span>
+            <span>${mockUser.xp}/${mockUser.xpToNextLevel} XP</span>
+          </div>
+          <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+            <div class="h-full bg-eco-gold rounded-full" style="width: 86%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 gap-3 mb-5">
+        <div class="glass-card text-center py-4">
+          <div class="w-12 h-12 mx-auto mb-2 rounded-2xl bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-2xl">🔥</div>
+          <div class="text-2xl font-bold text-eco-dark">${mockUser.streak} días</div>
+          <div class="text-sm text-gray-500">Racha actual</div>
+        </div>
+        <div class="glass-card text-center py-4">
+          <div class="w-12 h-12 mx-auto mb-2 rounded-2xl bg-gradient-to-br from-eco-gold/20 to-amber-500/20 flex items-center justify-center text-eco-gold">
+            ${icons.Trophy}
+          </div>
+          <div class="text-2xl font-bold text-eco-dark">${mockUser.achievements}</div>
+          <div class="text-sm text-gray-500">Logros</div>
+        </div>
+      </div>
+
+      <!-- Achievements -->
+      <h2 class="font-semibold text-eco-dark mb-3 flex items-center gap-2">
+        <span class="text-eco-gold">${icons.Award}</span>
+        Logros
+      </h2>
+      <div class="grid grid-cols-2 gap-3 mb-5">
+        ${achievementsHTML}
+      </div>
+
+      <!-- Settings -->
+      <div class="glass-card p-0 divide-y divide-gray-100">
+        <button class="flex items-center gap-3 w-full p-4 text-left">
+          <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">${icons.User}</div>
+          <span class="flex-1 font-medium text-eco-dark">Editar perfil</span>
+          <span class="text-gray-400">${icons.ChevronRight}</span>
+        </button>
+        <button class="flex items-center gap-3 w-full p-4 text-left">
+          <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">${icons.Settings}</div>
+          <span class="flex-1 font-medium text-eco-dark">Configuración</span>
+          <span class="text-gray-400">${icons.ChevronRight}</span>
+        </button>
+      </div>
+      <button class="flex items-center gap-3 w-full p-4 text-left text-red-500 mt-3 cursor-pointer">
+        <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center">${icons.Settings}</div>
+        <span class="font-medium">Cerrar sesión</span>
+      </button>
+    </div>
+  `;
+}
+
+// Modal functions
+function showScanModal() {
+  const modal = document.createElement('div');
+  modal.id = 'scan-modal';
+  modal.className = 'fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4';
+  modal.onclick = hideScanModal;
+  modal.innerHTML = `
+    <div class="bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+      <div class="relative h-52 bg-gradient-to-b from-eco-green/20 to-eco-blue/20 flex items-center justify-center">
+        <div class="relative w-40 h-40">
+          <div class="absolute top-0 left-0 w-10 h-10 border-t-4 border-l-4 border-eco-green rounded-tl-2xl"></div>
+          <div class="absolute top-0 right-0 w-10 h-10 border-t-4 border-r-4 border-eco-green rounded-tr-2xl"></div>
+          <div class="absolute bottom-0 left-0 w-10 h-10 border-b-4 border-l-4 border-eco-green rounded-bl-2xl"></div>
+          <div class="absolute bottom-0 right-0 w-10 h-10 border-b-4 border-r-4 border-eco-green rounded-br-2xl"></div>
+          <div id="scan-inner" class="absolute inset-0 flex items-center justify-center">
+            <span class="text-4xl">📷</span>
+          </div>
+        </div>
+        <button onclick="hideScanModal()" class="absolute top-4 right-4 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center">${icons.X}</button>
+      </div>
+      <div class="p-6 text-center" id="scan-content">
+        <h3 class="font-bold text-xl mb-2">Escanear QR</h3>
+        <p class="text-gray-500 text-sm mb-4">Aproxima el código del contenedor</p>
+        <button onclick="startScan()" class="gradient-card w-full py-3 rounded-2xl font-semibold text-white cursor-pointer">Iniciar Escaneo</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
+
+function hideScanModal() {
+  const modal = document.getElementById('scan-modal');
+  if (modal) modal.remove();
+}
+
+function startScan() {
+  const content = document.getElementById('scan-content');
+  const inner = document.getElementById('scan-inner');
+  if (!content || !inner) return;
+
+  content.innerHTML = '<h3 class="font-bold text-xl">Escaneando...</h3>';
+  setTimeout(() => {
+    content.innerHTML = '<h3 class="font-bold text-xl mb-1">Validando...</h3><p class="text-sm text-gray-500">Verificando en blockchain</p>';
+    inner.innerHTML = '<span class="text-2xl animate-spin">⏳</span>';
+    setTimeout(() => {
+      content.innerHTML = '<h3 class="font-bold text-xl mb-2">¡Reciclaje Registrado!</h3><div class="bg-eco-green/10 rounded-2xl p-4 mb-2"><p class="font-bold text-2xl">1.2 kg</p><p class="text-eco-green font-bold">+18 EP</p></div><button onclick="hideScanModal()" class="gradient-card w-full py-3 rounded-2xl font-semibold text-white cursor-pointer">Continuar</button>';
+      inner.innerHTML = '<span class="text-3xl">✅</span>';
+    }, 1500);
+  }, 1500);
+}
+
+function showSuccessModal(points) {
+  const modal = document.createElement('div');
+  modal.id = 'success-modal';
+  modal.className = 'fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4';
+  modal.onclick = hideSuccessModal;
+  modal.innerHTML = `
+    <div class="bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+      <div class="p-8 text-center">
+        <div class="w-20 h-20 mx-auto mb-4 gradient-card rounded-full flex items-center justify-center">
+          <span class="text-4xl">🎉</span>
+        </div>
+        <h3 class="font-bold text-2xl mb-2">¡Canje Exitoso!</h3>
+        <p class="text-gray-500 mb-4">Has canjeado <span class="font-bold text-eco-green">$ ${formatCLP(points)} EP</span></p>
+        <button onclick="hideSuccessModal()" class="gradient-card w-full py-3 rounded-2xl font-semibold text-white cursor-pointer">Continuar</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
+
+function hideSuccessModal() {
+  const modal = document.getElementById('success-modal');
+  if (modal) modal.remove();
+}
+
+// App Controller
+const pages = {
+  home: HomePage,
+  recycling: RecyclingPage,
+  marketplace: MarketplacePage,
+  map: MapPage,
+  profile: ProfilePage
+};
+
+let currentPage = 'home';
+
+function navigateTo(page) {
+  currentPage = page;
+  const appContent = document.getElementById('app-content');
+  if (appContent && pages[page]) {
+    appContent.innerHTML = pages[page]();
+  }
+
+  // Update nav items
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.classList.remove('active');
+    if (item.dataset.page === page) {
+      item.classList.add('active');
+    }
+  });
+}
+
+// Initialize navigation
+document.addEventListener('DOMContentLoaded', () => {
+  // Set up nav click handlers
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      navigateTo(item.dataset.page);
+    });
+  });
+
+  // Load initial page
+  navigateTo('home');
+});
+
+// Pulse animation via JS
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+  }
+`;
+document.head.appendChild(style);
+</script>
+
+
+<script>
+/**
+ * Iframe 元素高亮注入脚本
+ * 需要在目标网站中引入此脚本来支持跨域 iframe 高亮功能
+ *
+ * 使用方法：
+ * 1. 将此脚本添加到目标网站的 HTML 中
+ * 2. 或通过浏览器扩展、用户脚本等方式注入
+ */
+
+(function () {
+  "use strict";
+
+  // 检查是否在 iframe 中
+  if (window.self === window.top) {
+    return; // 不在 iframe 中，不执行
+  }
+
+  // 检查是否已经初始化过
+  if (window.__iframeHighlightInitialized) {
+    return;
+  }
+  window.__iframeHighlightInitialized = true;
+  console.log("Iframe 高亮脚本已加载");
+
+  // 创建高亮覆盖层
+  var overlay = document.createElement("div");
+  overlay.id = "iframe-highlight-overlay";
+  overlay.style.cssText = "\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    pointer-events: none;\n    z-index: 999999;\n    overflow: hidden;\n  ";
+
+  // 创建悬停高亮框（虚线边框）
+  var highlightBox = document.createElement("div");
+  highlightBox.id = "iframe-highlight-box";
+  highlightBox.style.cssText = "\n    position: absolute;\n    border: 2px dashed #007AFF;\n    background: rgba(0, 122, 255, 0.08);\n    pointer-events: none;\n    display: none;\n    transition: all 0.1s ease;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);\n    border-radius: 2px;\n  ";
+
+  // 创建选中节点的常驻高亮框（实线边框）
+  var selectedBox = document.createElement("div");
+  selectedBox.id = "iframe-selected-box";
+  selectedBox.style.cssText = "\n    position: absolute;\n    border: 2px solid #007AFF;\n    pointer-events: none;\n    display: none;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 107, 53, 0.4);\n    border-radius: 2px;\n    z-index: 1000000;\n  ";
+
+  // 创建悬停标签显示
+  var tagLabel = document.createElement("div");
+  tagLabel.id = "iframe-tag-label";
+  tagLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 2px 6px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 2px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000001;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);\n    font-weight: 500;\n  ";
+
+  // 创建选中节点标签
+  var selectedLabel = document.createElement("div");
+  selectedLabel.id = "iframe-selected-label";
+  selectedLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 3px 8px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 3px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000002;\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);\n    font-weight: 600;\n  ";
+  overlay.appendChild(highlightBox);
+  overlay.appendChild(selectedBox);
+  overlay.appendChild(tagLabel);
+  overlay.appendChild(selectedLabel);
+  document.body.appendChild(overlay);
+
+  // 存储当前选中的元素
+  var selectedElement = null;
+  var highlightEnabled = false;
+
+  // 更新选中元素的高亮显示
+  function updateSelectedHighlight(element) {
+    console.log("updateSelectedHighlight called with:", element);
+    if (!element) {
+      selectedBox.style.display = "none";
+      selectedLabel.style.display = "none";
+      selectedElement = null;
+      console.log("Cleared selected highlight");
+      return;
+    }
+    selectedElement = element;
+    var rect = element.getBoundingClientRect();
+    console.log("Selected element rect:", rect);
+
+    // 更新选中高亮框位置
+    selectedBox.style.display = "block";
+    selectedBox.style.left = "".concat(rect.left - 2, "px");
+    selectedBox.style.top = "".concat(rect.top - 2, "px");
+    selectedBox.style.width = "".concat(rect.width + 4, "px");
+    selectedBox.style.height = "".concat(rect.height + 4, "px");
+
+    // 更新选中标签位置和内容
+    selectedLabel.style.display = "block";
+    selectedLabel.textContent = "\u2713 <".concat(element.tagName.toLowerCase(), ">");
+
+    // 计算标签位置，确保不超出视窗
+    var labelTop = rect.top - 28;
+    var labelLeft = rect.left;
+
+    // 如果标签会超出顶部，显示在元素下方
+    if (labelTop < 5) {
+      labelTop = rect.bottom + 5;
+    }
+
+    // 如果标签会超出右侧，向左调整
+    var labelWidth = selectedLabel.offsetWidth || 100; // 预估宽度
+    if (labelLeft + labelWidth > window.innerWidth - 10) {
+      labelLeft = window.innerWidth - labelWidth - 10;
+    }
+    selectedLabel.style.left = "".concat(Math.max(5, labelLeft), "px");
+    selectedLabel.style.top = "".concat(labelTop, "px");
+    console.log("Selected highlight positioned at:", {
+      left: selectedBox.style.left,
+      top: selectedBox.style.top,
+      width: selectedBox.style.width,
+      height: selectedBox.style.height
+    });
+  }
+  function getElementSelector(element) {
+    if (!(element instanceof Element)) throw new Error('Argument must be a DOM element');
+    var segments = [];
+    var current = element;
+    while (current !== document.documentElement) {
+      var selector = '';
+      // 优先检查唯一ID
+      if (current.id && document.querySelectorAll("#".concat(current.id)).length === 1) {
+        segments.unshift("#".concat(current.id));
+        break; // ID唯一，无需继续向上
+      }
+
+      // 生成类名选择器（取第一个有效类名）
+      var classes = Array.from(current.classList).filter(function (c) {
+        return !c.startsWith('js-');
+      });
+      var className = classes.length > 0 ? ".".concat(classes[0]) : '';
+
+      // 生成位置索引（nth-child）
+      var tag = current.tagName.toLowerCase();
+      if (!className) {
+        var siblings = Array.from(current.parentNode.children);
+        var index = siblings.findIndex(function (el) {
+          return el === current;
+        }) + 1;
+        selector = "".concat(tag, ":nth-child(").concat(index, ")");
+      } else {
+        selector = className;
+      }
+      segments.unshift(selector);
+      current = current.parentElement;
+    }
+
+    // 处理根元素
+    if (current === document.documentElement) {
+      segments.unshift('html');
+    }
+    return segments.join(' > ');
+  }
+
+  // 获取元素文本内容
+  function getElementText(element) {
+    var _element$textContent;
+    if (element.tagName === "INPUT") {
+      return element.value || element.placeholder || "";
+    }
+    if (element.tagName === "TEXTAREA") {
+      return element.value || element.placeholder || "";
+    }
+    var text = ((_element$textContent = element.textContent) === null || _element$textContent === void 0 ? void 0 : _element$textContent.trim()) || "";
+    return text.length > 50 ? text.substring(0, 50) + "..." : text;
+  }
+
+  // 获取元素属性信息
+  function getElementAttributes(element) {
+    var attrs = {};
+    for (var i = 0; i < element.attributes.length; i++) {
+      var attr = element.attributes[i];
+      attrs[attr.name] = attr.value;
+    }
+    return attrs;
+  }
+
+  // 鼠标悬停事件处理
+  function handleMouseOver(e) {
+    if (!highlightEnabled) return;
+    var target = e.target;
+    if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+      return;
+    }
+
+    // 避免高亮 html 和 body 元素
+    if (target === document.documentElement || target === document.body) {
+      return;
+    }
+
+    // 如果是已选中的元素，不显示悬停高亮
+    if (target === selectedElement) {
+      highlightBox.style.display = "none";
+      tagLabel.style.display = "none";
+      return;
+    }
+    var rect = target.getBoundingClientRect();
+    var selector = getElementSelector(target);
+    var text = getElementText(target);
+    var attributes = getElementAttributes(target);
+
+    // 更新悬停高亮框位置
+    highlightBox.style.display = "block";
+    highlightBox.style.left = "".concat(rect.left - 2, "px");
+    highlightBox.style.top = "".concat(rect.top - 2, "px");
+    highlightBox.style.width = "".concat(rect.width + 4, "px");
+    highlightBox.style.height = "".concat(rect.height + 4, "px");
+
+    // 更新标签位置和内容
+    tagLabel.style.display = "block";
+    tagLabel.textContent = "<".concat(target.tagName.toLowerCase(), ">");
+
+    // 计算标签位置，确保不超出视窗
+    var labelTop = rect.top - 22;
+    var labelLeft = rect.left;
+
+    // 如果标签会超出顶部，显示在元素下方
+    if (labelTop < 0) {
+      labelTop = rect.bottom + 5;
+    }
+
+    // 如果标签会超出右侧，向左调整
+    if (labelLeft + tagLabel.offsetWidth > window.innerWidth) {
+      labelLeft = window.innerWidth - tagLabel.offsetWidth - 5;
+    }
+    tagLabel.style.left = "".concat(Math.max(0, labelLeft), "px");
+    tagLabel.style.top = "".concat(labelTop, "px");
+
+    // 发送消息到父窗口
+    var elementInfo = {
+      tagName: target.tagName.toLowerCase(),
+      rect: {
+        left: rect.left,
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        x: rect.x,
+        y: rect.y
+      },
+      selector: selector,
+      text: text,
+      attributes: attributes,
+      url: window.location.href,
+      path: window.location.pathname,
+      timestamp: Date.now()
+    };
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-hover",
+        data: elementInfo,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 鼠标离开事件处理
+  function handleMouseOut(e) {
+    if (!highlightEnabled) return;
+    var relatedTarget = e.relatedTarget;
+
+    // 如果鼠标移动到高亮相关元素上，不隐藏高亮
+    if (relatedTarget && (relatedTarget === highlightBox || relatedTarget === tagLabel || relatedTarget === overlay || relatedTarget === selectedBox || relatedTarget === selectedLabel)) {
+      return;
+    }
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-hover",
+        data: null,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 点击事件处理
+  function handleClick(e) {
+    var target = e.target;
+    if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+      return;
+    }
+
+    // 避免处理 html 和 body 元素
+    if (target === document.documentElement || target === document.body) {
+      return;
+    }
+
+    // 检查是否是交互元素，这些元素需要保留默认行为
+    var isInteractiveElement = ['input', 'textarea', 'select', 'button', 'a'].includes(target.tagName.toLowerCase());
+
+    // 如果高亮功能启用，对于非交互元素阻止默认行为和事件传播
+    if (highlightEnabled) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    var rect = target.getBoundingClientRect();
+    var selector = getElementSelector(target);
+    var text = getElementText(target);
+    var attributes = getElementAttributes(target);
+    console.log("Element clicked:", {
+      tagName: target.tagName,
+      selector: selector,
+      rect: rect
+    });
+
+    // 立即更新选中高亮
+    updateSelectedHighlight(target);
+
+    // 隐藏悬停高亮，因为现在是选中状态
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    var elementInfo = {
+      tagName: target.tagName.toLowerCase(),
+      rect: {
+        left: rect.left,
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        x: rect.x,
+        y: rect.y
+      },
+      selector: selector,
+      text: text,
+      attributes: attributes,
+      url: window.location.href,
+      path: window.location.pathname,
+      timestamp: Date.now()
+    };
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-click",
+        data: elementInfo,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 监听来自父窗口的消息
+  function handleParentMessage(event) {
+    console.log("Received message from parent:", event.data);
+    if (event.data.type === "iframe-highlight-toggle") {
+      var enabled = event.data.enabled;
+      console.log("Highlight toggle:", enabled);
+      if (enabled) {
+        enableHighlight();
+      } else {
+        disableHighlight();
+      }
+    } else if (event.data.type === "enable-iframe-highlight") {
+      console.log("Enable iframe highlight");
+      enableHighlight();
+    } else if (event.data.type === "disable-iframe-highlight") {
+      console.log("Disable iframe highlight");
+      disableHighlight();
+    } else if (event.data.type === "toggle-iframe-highlight") {
+      var _enabled = event.data.enabled !== undefined ? event.data.enabled : !highlightEnabled;
+      console.log("Toggle iframe highlight to:", _enabled);
+      if (_enabled) {
+        enableHighlight();
+      } else {
+        disableHighlight();
+      }
+    } else if (event.data.type === "update-selected-element") {
+      var selector = event.data.selector;
+      console.log("Update selected element with selector:", selector);
+      if (selector) {
+        try {
+          var element = document.querySelector(selector);
+          console.log("Found element by selector:", element);
+          updateSelectedHighlight(element);
+        } catch (error) {
+          console.warn("Failed to select element:", error);
+          updateSelectedHighlight(null);
+        }
+      } else {
+        updateSelectedHighlight(null);
+      }
+    } else if (event.data.type === "clear-selected-element") {
+      console.log("Clear selected element");
+      updateSelectedHighlight(null);
+    }
+  }
+
+  // 启用高亮功能
+  function enableHighlight() {
+    console.log("Enabling highlight");
+    document.addEventListener("mouseover", handleMouseOver, true);
+    document.addEventListener("mouseout", handleMouseOut, true);
+    document.addEventListener("click", handleClick, true);
+    highlightEnabled = true;
+    overlay.style.display = "block";
+  }
+
+  // 禁用高亮功能
+  function disableHighlight() {
+    console.log("Disabling highlight");
+    highlightEnabled = false;
+    // 保持事件监听器，但通过 highlightEnabled 变量控制行为
+    // 这样可以保留选中状态的显示
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    // 不隐藏 selectedBox 和 selectedLabel，保留选中状态
+  }
+
+  // 完全禁用高亮功能（移除所有监听器）
+  function fullyDisableHighlight() {
+    console.log("Fully disabling highlight");
+    highlightEnabled = false;
+    document.removeEventListener("mouseover", handleMouseOver, true);
+    document.removeEventListener("mouseout", handleMouseOut, true);
+    document.removeEventListener("click", handleClick, true);
+    overlay.style.display = "none";
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    selectedBox.style.display = "none";
+    selectedLabel.style.display = "none";
+  }
+
+  // 添加事件监听
+  enableHighlight();
+  window.addEventListener("message", handleParentMessage);
+
+  // 暴露全局函数供外部调用
+  window.__iframeHighlightControl = {
+    enable: enableHighlight,
+    disable: disableHighlight,
+    fullyDisable: fullyDisableHighlight,
+    isEnabled: function isEnabled() {
+      return highlightEnabled;
+    },
+    getSelectedElement: function getSelectedElement() {
+      return selectedElement;
+    },
+    updateSelected: updateSelectedHighlight,
+    // 通过消息发送开关控制
+    sendToggleMessage: function sendToggleMessage(enabled) {
+      window.parent.postMessage({
+        type: 'iframe-highlight-status',
+        enabled: enabled || highlightEnabled,
+        source: 'iframe-highlight-injector'
+      }, '*');
+    }
+  };
+
+  // 通知父窗口脚本已加载
+  try {
+    window.parent.postMessage({
+      type: "iframe-highlight-ready",
+      data: {
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        timestamp: Date.now()
+      },
+      source: "iframe-highlight-injector"
+    }, "*");
+  } catch (error) {
+    console.warn("无法发送就绪消息到父窗口:", error);
+  }
+
+  // 清理函数
+  window.__iframeHighlightCleanup = function () {
+    fullyDisableHighlight();
+    window.removeEventListener("message", handleParentMessage);
+    if (overlay.parentElement) {
+      overlay.parentElement.removeChild(overlay);
+    }
+    delete window.__iframeHighlightInitialized;
+    delete window.__iframeHighlightCleanup;
+  };
+})();
+
+</script>
+<style>
+#minimax-floating-ball {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 12px;
+  background: #222222;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  color: #F8F8F8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  z-index: 9999;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#minimax-floating-ball:hover {
+  transform: translateY(-2px);
+  background: #383838;
+}
+.minimax-ball-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.minimax-logo-wave {
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg%20preserveAspectRatio%3D%27none%27%20width%3D%27100%25%27%20height%3D%27100%25%27%20overflow%3D%27visible%27%20style%3D%27display%3A%20block%3B%27%20viewBox%3D%270%200%20170.136%20138.225%27%20fill%3D%27none%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cg%20id%3D%27Frame%202116748449%27%3E%3Cpath%20id%3D%27Subtract%27%20d%3D%27M170%20101.783C170%20105.144%20168.49%20108.327%20165.886%20110.453L134.963%20135.702C132.964%20137.334%20130.463%20138.225%20127.883%20138.225H10.4938C4.69824%20138.225%200%20133.527%200%20127.732V39.2289C0%2035.8597%201.51758%2032.6698%204.13162%2030.5442L38.5402%202.56547C40.536%200.942662%2043.0298%200.0567377%2045.602%200.0567377H159.506C165.302%200.0567377%20170%204.75498%20170%2010.5506V101.783Z%27%20fill%3D%27black%27%20style%3D%27fill%3Ablack%3Bfill-opacity%3A1%3B%27/%3E%3Cpath%20id%3D%27Subtract_2%27%20d%3D%27M149.011%2094.4632C149.011%2096.1471%20148.253%2097.7415%20146.946%2098.8043L125.893%20115.936C124.895%20116.748%20123.648%20117.191%20122.361%20117.191H24.6479C22.716%20117.191%2021.15%20115.625%2021.15%20113.693V46.1166C21.15%2044.4267%2021.9135%2042.8274%2023.2274%2041.7648L47.367%2022.2437C48.3638%2021.4376%2049.607%2020.9982%2050.8888%2020.9988L145.514%2021.0427C147.446%2021.0436%20149.011%2022.6094%20149.011%2024.5406V94.4632Z%27%20fill%3D%27white%27%20style%3D%27fill%3Awhite%3Bfill-opacity%3A1%3B%27/%3E%3Cpath%20id%3D%27Rectangle%20111142564%27%20d%3D%27M42.111%2080.8025C42.111%2077.7115%2044.6167%2075.2057%2047.7077%2075.2057H60.9999C64.0908%2075.2057%2066.5966%2077.7115%2066.5966%2080.8025V121.029H42.111V80.8025Z%27%20fill%3D%27black%27%20style%3D%27fill%3Ablack%3Bfill-opacity%3A1%3B%27/%3E%3Cpath%20id%3D%27Rectangle%20111142567%27%20d%3D%27M79.1894%2080.8025C79.1894%2077.7115%2081.6952%2075.2057%2084.7861%2075.2057H98.0783C101.169%2075.2057%20103.675%2077.7115%20103.675%2080.8025V121.029H79.1894V80.8025Z%27%20fill%3D%27black%27%20style%3D%27fill%3Ablack%3Bfill-opacity%3A1%3B%27/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 11px;
+  background-color: #8FD1FF;
+  border-radius: 4px;
+}
+
+.minimax-ball-text {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.minimax-close-icon {
+  margin-left: 8px;
+  font-size: 16px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.minimax-close-icon:hover {
+  opacity: 1;
+}
+</style>
+<div id="minimax-floating-ball">
+  <div class="minimax-ball-content">
+    <div class="minimax-logo-wave"></div>
+    <span class="minimax-ball-text">Created by MiniMax Agent</span>
+  </div>
+  <div class="minimax-close-icon">×</div>
+</div>
+<script>
+// Initialize floating ball functionality
+function initFloatingBall() {
+  const ball = document.getElementById('minimax-floating-ball');
+  if (!ball) return;
+
+  // Initial animation
+  ball.style.opacity = '0';
+  ball.style.transform = 'translateY(20px)';
+
+  setTimeout(() => {
+    ball.style.opacity = '1';
+    ball.style.transform = 'translateY(0)';
+  }, 500);
+
+  // Handle logo click
+  const ballContent = ball.querySelector('.minimax-ball-content');
+  ballContent.addEventListener('click', function (e) {
+    e.stopPropagation();
+    window.open('https://agent.minimax.io/', '_blank');
+    ball.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      ball.style.transform = 'scale(1)';
+    }, 100);
+  });
+
+  // Handle close button click
+  const closeIcon = ball.querySelector('.minimax-close-icon');
+  closeIcon.addEventListener('click', function (e) {
+    e.stopPropagation();
+    ball.style.opacity = '0';
+    ball.style.transform = 'translateY(20px)';
+
+    setTimeout(() => {
+      ball.style.display = 'none';
+    }, 300);
+  });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', initFloatingBall); 
+</script>
+</body>
+</html>
